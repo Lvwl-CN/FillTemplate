@@ -1,0 +1,16 @@
+﻿<Window x:Class="FillTemplate.Pages.SheetSelect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FillTemplate.Pages"
+        mc:Ignorable="d"
+        Title="选择工作表" Height="200" Width="400" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Normal">
+    <Grid>
+        <ComboBox x:Name="cbx" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="OK" Content="确定" Margin="5,0" Click="OK_Click"/>
+            <Button x:Name="Cancel" Content="取消" Margin="5,0" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
