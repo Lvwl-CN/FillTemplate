@@ -1,4 +1,6 @@
 bin
+Debug
+Release
 obj
 packages
 .vs

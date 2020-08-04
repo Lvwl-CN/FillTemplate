@@ -64,11 +64,14 @@ namespace FillTemplate.Pages
 
         public Visibility LoadingVisibility { get; set; } = Visibility.Collapsed;
 
+
+        public bool CanReadTemplateBookMarkAndCreateDataTable { get { return !string.IsNullOrEmpty(TemplateFilePath) && File.Exists(TemplateFilePath); } }
         /// <summary>
         /// 读取模板书签并创建数据表
         /// </summary>
         public async void ReadTemplateBookMarkAndCreateDataTable()
         {
+            if (string.IsNullOrEmpty(TemplateFilePath) || !File.Exists(TemplateFilePath)) return;
             LoadingVisibility = Visibility.Visible;
             var dt = DT;
             DT = null;

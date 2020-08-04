@@ -88,7 +88,89 @@
         </StackPanel>
 
         <Border Grid.RowSpan="4" Visibility="{Binding LoadingVisibility}" Background="#80000000">
+            <Grid x:Name="storyGrid" Width="180" Height="40">
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard Duration="0:0:4" RepeatBehavior="Forever">
+                                <ColorAnimation Storyboard.TargetName="c1" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:2" AutoReverse="True" FillBehavior="Stop" RepeatBehavior="Forever" From="#FF7EFFD9" To="#FF0ABDFF"/>
+                                <ColorAnimation Storyboard.TargetName="c2" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:0" From="#FF5DEDE3" To="#FF7EFFD9"/>
+                                <ColorAnimation Storyboard.TargetName="c3" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:0.5" From="#FF23CCF5" To="#FF5DEDE3"/>
+                                <ColorAnimation Storyboard.TargetName="c4" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:1" From="#FF23CCF5" To="#FF23CCF5"/>
+                                <ColorAnimation Storyboard.TargetName="c5" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:1.5" From="#FF0ABDFF" To="#FF23CCF5"/>
 
+                                <ColorAnimation Storyboard.TargetName="c2" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:3.5" To="#FF7EFFD9" From="#FF23CCF5"/>
+                                <ColorAnimation Storyboard.TargetName="c3" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:3" To="#FF23CCF5" From="#FF5DEDE3"/>
+                                <ColorAnimation Storyboard.TargetName="c4" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:2.5" To="#FF23CCF5" From="#FF23CCF5"/>
+                                <ColorAnimation Storyboard.TargetName="c5" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:0.5" BeginTime="0:0:2" To="#FF0ABDFF" From="#FF23CCF5"/>
+
+
+                                <DoubleAnimation Storyboard.TargetName="t1" Storyboard.TargetProperty="(TranslateTransform.X)" From="0" To="160" Duration="0:0:2" RepeatBehavior="Forever" AutoReverse="True" FillBehavior="Stop"/>
+                                <DoubleAnimation Storyboard.TargetName="t2" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0" To="-180" Duration="0:0:0.5" BeginTime="0:0:0"/>
+                                <DoubleAnimation Storyboard.TargetName="t3" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0" To="-180" Duration="0:0:0.5" BeginTime="0:0:0.5"/>
+                                <DoubleAnimation Storyboard.TargetName="t4" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0" To="-180" Duration="0:0:0.5" BeginTime="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="t5" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0" To="-180" Duration="0:0:0.5" BeginTime="0:0:1.5"/>
+
+                                <DoubleAnimation Storyboard.TargetName="t2" Storyboard.TargetProperty="(RotateTransform.Angle)" To="-360" From="-180" Duration="0:0:0.5" BeginTime="0:0:3.5"/>
+                                <DoubleAnimation Storyboard.TargetName="t3" Storyboard.TargetProperty="(RotateTransform.Angle)" To="-360" From="-180" Duration="0:0:0.5" BeginTime="0:0:3"/>
+                                <DoubleAnimation Storyboard.TargetName="t4" Storyboard.TargetProperty="(RotateTransform.Angle)" To="-360" From="-180" Duration="0:0:0.5" BeginTime="0:0:2.5"/>
+                                <DoubleAnimation Storyboard.TargetName="t5" Storyboard.TargetProperty="(RotateTransform.Angle)" To="-360" From="-180" Duration="0:0:0.5" BeginTime="0:0:2"/>
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+                <Path x:Name="b1" Data="M0,0 A10,10 45 1 1 0,1Z" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="t1" X="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="c1" Color="#FF7EFFD9"/>
+                    </Path.Fill>
+                </Path>
+                <Path x:Name="b2" Data="M40,0 A10,10 45 1 1 40,1Z">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="t2" Angle="0" CenterX="30" CenterY="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="c2" Color="#FF5DEDE3"/>
+                    </Path.Fill>
+                </Path>
+                <Path x:Name="b3" Data="M80,0 A10,10 45 1 1 80,1Z">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="t3" Angle="0" CenterX="70" CenterY="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="c3" Color="#FF23CCF5"/>
+                    </Path.Fill>
+                </Path>
+                <Path x:Name="b4" Data="M120,0 A10,10 45 1 1 120,1Z">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="t4" Angle="0" CenterX="110" CenterY="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="c4" Color="#FF23CCF5"/>
+                    </Path.Fill>
+                </Path>
+                <Path x:Name="b5" Data="M160,0 A10,10 45 1 1 160,1Z">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="t5" Angle="0" CenterX="150" CenterY="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="c5" Color="#FF0ABDFF"/>
+                    </Path.Fill>
+                </Path>
+            </Grid>
         </Border>
     </Grid>
 </Window>
