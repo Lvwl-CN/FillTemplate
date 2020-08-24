@@ -35,6 +35,20 @@ namespace FillTemplate.Pages
         {
             e.Row.Header = e.Row.GetIndex() + 1;
         }
+
+
+        public bool GetCellXY(ref int rowIndex, ref int columnIndex)
+        {
+            var _cells = dtview.SelectedCells;
+            if (_cells.Any())
+            {
+                rowIndex = dtview.Items.IndexOf(_cells.First().Item);
+                columnIndex = _cells.First().Column.DisplayIndex;
+                return true;
+            }
+            return false;
+
+        }
     }
 
     public class ShellViewModel : Screen
@@ -209,6 +223,42 @@ namespace FillTemplate.Pages
             }
         }
 
+        public bool CanPause { get { return DT != null && DT.Columns.Count > 0; } }
+        /// <summary>
+        /// 粘贴excel文本
+        /// </summary>
+        public void Pause()
+        {
+            IDataObject data = Clipboard.GetDataObject();
+            if (data.GetDataPresent(DataFormats.Text))
+            {
+                string str = (string)data.GetData(DataFormats.Text);
+                if (string.IsNullOrEmpty(str)) return;
+                int RowIndex = 0, ColumnIndex = 1;
+                if (this.View is ShellView view)
+                {
+                    view.GetCellXY(ref RowIndex, ref ColumnIndex);
+                    var rowIndex = RowIndex < 0 ? 0 : RowIndex;
+                    var rowdatas = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var rowdata in rowdatas)
+                    {
+                        if (rowIndex >= DT.Rows.Count) DT.Rows.Add(DT.NewRow());
+                        var datarow = DT.Rows[rowIndex];
+                        var datas = rowdata.Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        var columnIndex = ColumnIndex - 1;
+                        foreach (var d in datas)
+                        {
+                            if (columnIndex >= DT.Columns.Count) break;
+                            datarow[columnIndex] = d;
+                            columnIndex++;
+                        }
+                        rowIndex++;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region 底部操作
@@ -312,7 +362,7 @@ namespace FillTemplate.Pages
         }
 
 
-        public bool CanExportData { get { return DT != null && DT.Rows.Count > 0 && DT.Columns.Count > 0; } }
+        public bool CanExportData { get { return DT != null && DT.Columns.Count > 0; } }
 
         /// <summary>
         /// 导出数据

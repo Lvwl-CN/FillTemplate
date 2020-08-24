@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.Model;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FillTemplate.Office
 {
-    public class ExcelUtility
+    public static class ExcelUtility
     {
         public static async Task ExportDataToExcel(DataTable dt)
         {
@@ -78,9 +80,14 @@ namespace FillTemplate.Office
                         {
                             List<string> sheetnames = new List<string>();
                             for (int i = 0; i < sheetcount; i++) sheetnames.Add(workbook[i].SheetName);
-                            Pages.SheetSelect sheetSelect = new Pages.SheetSelect() { Sheets = sheetnames };
-                            if (sheetSelect.ShowDialog() != true) return DT;
-                            sheet = workbook.GetSheet(sheetSelect.Sheet);
+                            var temp = Application.Current.Dispatcher.Invoke(() =>
+                             {
+                                 Pages.SheetSelect sheetSelect = new Pages.SheetSelect() { Sheets = sheetnames };
+                                 if (sheetSelect.ShowDialog() != true) return null;
+                                 return sheetSelect.Sheet;
+                             });
+                            if (temp == null) return DT;
+                            sheet = workbook.GetSheet(temp); ;
                         }
                         else sheet = workbook[0];
                         if (sheet.LastRowNum <= 0) return DT;
@@ -93,11 +100,16 @@ namespace FillTemplate.Office
                             var head = rowhead.GetCell(i).StringCellValue;
                             if (DT.Columns.Contains(head)) indexs[head] = i;
                         }
+
                         for (int i = 1; i <= sheet.LastRowNum; i++)
                         {
                             var dtrow = DT.NewRow();
                             var row = sheet.GetRow(i);
-                            foreach (var item in indexs) dtrow[item.Key] = row.GetCell(item.Value).StringCellValue;
+                            foreach (var item in indexs)
+                            {
+                                var cell = row.GetCell(item.Value);
+                                dtrow[item.Key] = cell.ToString();
+                            }
                             DT.Rows.Add(dtrow);
                         }
                         return DT;
@@ -107,4 +119,6 @@ namespace FillTemplate.Office
             else return DT;
         }
     }
+
+
 }

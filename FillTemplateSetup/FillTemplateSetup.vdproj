@@ -148,12 +148,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C8B5AFF50835291ADEFD9C982524C794"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_11FB140E3FC440CDBEF11243541ADA29"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -211,6 +205,12 @@
         "OwnerKey" = "8:_6C55B6F82F95B98916129170171CB830"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C8B5AFF50835291ADEFD9C982524C794"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -261,6 +261,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -676,15 +692,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FillTemplate"
-        "ProductCode" = "8:{48C7509A-7DE6-4790-BB8E-D54D175AD822}"
-        "PackageCode" = "8:{AC6D82C2-E83D-4140-B787-5D08C4CBA01C}"
+        "ProductCode" = "8:{839711FF-9C51-4117-A431-09279F3328A1}"
+        "PackageCode" = "8:{D15D024F-AF2A-4C6B-A5E0-050842EC2D2B}"
         "UpgradeCode" = "8:{F9C008A5-3E03-4695-B309-F49DFD97A0D7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:Lvwl-CN"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/Lvwl-CN/FillTemplate"

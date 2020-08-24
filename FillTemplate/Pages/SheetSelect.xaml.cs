@@ -19,7 +19,14 @@ namespace FillTemplate.Pages
     /// </summary>
     public partial class SheetSelect : Window
     {
-        public List<string> Sheets { set { this.cbx.ItemsSource = value; } }
+        public List<string> Sheets
+        {
+            set
+            {
+                this.cbx.ItemsSource = value;
+                if (value != null && value.Count > 0) this.cbx.SelectedItem = value[0];
+            }
+        }
 
         public string Sheet { get { return this.cbx.SelectedItem.ToString(); } }
         public SheetSelect()

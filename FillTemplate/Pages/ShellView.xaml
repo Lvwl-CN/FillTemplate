@@ -34,9 +34,10 @@
 
             <Button Command="{s:Action ClearAll}" Content="清除所有" Margin="50,0,0,0"/>
             <Button Command="{s:Action ClearEmpty}" Content="清除空行" Margin="5,0,0,0"/>
+            <Button Command="{s:Action Pause}" Content="粘贴"/>
         </StackPanel>
-        <DataGrid Grid.Row="2" ItemsSource="{Binding DT}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
-                  ColumnWidth="*" MinColumnWidth="100" MinRowHeight="20"
+        <DataGrid x:Name="dtview" Grid.Row="2" ItemsSource="{Binding DT}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserReorderColumns="False"
+                  ColumnWidth="*" MinColumnWidth="100" MinRowHeight="20" SelectedIndex="{Binding RowIndex,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" CurrentColumn="{Binding Column,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
                   HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                   SelectionMode="Single" SelectionUnit="Cell"
